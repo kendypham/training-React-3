@@ -20,7 +20,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <input id="inputTodo" type="text" placeholder="What needs to be done">
+                        <input class="w-100" id="inputTodo" type="text" placeholder="What needs to be done">
                     </div>
                     <div class="card-body">
                         <ul class="list-group" id="list-item">
@@ -28,14 +28,15 @@
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <button onclick="showCompleted()">Completed</button>
+                        <button onclick="showAll()">All</button>
+                        <button onclick="showCompleted()">Completed</button>            
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../dist/bundle.js"></script>
-    <!-- <script src="./index.js"> </script> -->
+    <!-- <script src="../dist/bundle.js"></script> -->
+    <script src="./index.js"> </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
