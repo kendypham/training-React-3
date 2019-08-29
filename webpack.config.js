@@ -3,7 +3,7 @@ var path = require('path');
  
 var config = {
   mode : "production",
-  entry: './src/index.js',
+  entry: './src/test.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -17,7 +17,10 @@ var config = {
                 {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env',"@babel/preset-react"],
+                        plugins: [
+                          "@babel/plugin-proposal-class-properties"
+                        ]
                     }
                 }
             ],
