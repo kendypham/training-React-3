@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
  
 var config = {
-  mode : "production",
+  mode : "development",
   entry: './src/test.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -20,7 +20,8 @@ var config = {
                         presets: ['@babel/preset-env',"@babel/preset-react"],
                         plugins: [
                           "@babel/plugin-proposal-class-properties"
-                        ]
+                        ],
+                        
                     }
                 }
             ],
