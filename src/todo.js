@@ -1,10 +1,73 @@
 class Todo {
-    constructor(arrayList = []) {
+    constructor(arrayList = [], eleHtml = []) {
         this.arrayList = arrayList;
+        this.eleHtml = eleHtml;
     }
-    setListValue(value) {
+    setListValue = (value) => {
         this.arrayList = value;
         this.storeData(value);
+    }
+
+
+    setEleValue = (value) => {
+        this.eleHtml = value
+    }
+
+    getEleHtml = () => {
+        let list = [];
+        let edit = document.getElementsByClassName("btn-edit");
+        let save = document.getElementsByClassName("btn-save");
+        let cancel = document.getElementsByClassName("btn-cancel");
+        let remove = document.getElementsByClassName("btn-remove");
+        let undoLet = document.getElementsByClassName("btn-undo");
+        list = [edit,save,cancel,remove,undoLet];
+        this.setEleValue(list);
+      
+        for (let key of list[0]) {
+            console.log("key edit",key);
+            let that = this;
+            key.addEventListener('click', function () {
+                let id = (this.getAttribute('idbutton'));
+                console.log("that",that);
+                
+                that.editItem(id);              
+            })
+        }
+            
+        for (let key of list[1]) {
+            console.log("key save",key)
+            let that = this;
+            key.addEventListener('click', function () {
+                let id = (this.getAttribute('idbutton'));
+                that.saveEdit(id);      
+            })
+        }
+            
+        for (let key of list[2]) {
+            console.log("key cancel",key)
+            let that = this;
+            key.addEventListener('click', function () {
+                let id = (this.getAttribute('idbutton'));
+                that.cancelSave(id);         
+            })
+        }
+        
+        for (let key of list[3]) {
+            let that = this;
+            key.addEventListener('click', function () {
+                let id = (this.getAttribute('idbutton'));
+               that.removeItem(id);
+              
+            }) 
+        }
+        
+        for (let key of list[4]) { 
+            let that = this; 
+            key.addEventListener('click', function () {  
+                let id = (this.getAttribute('idbutton')); 
+                that.undo(id); 
+            })     
+        }
     }
 
     getList = () => {
@@ -15,7 +78,7 @@ class Todo {
             list.sort(function (a, b) {
                 return a.id - b.id;
             });
-            this.setListValue(list)
+            this.setListValue(list);
         }
         return list;
     }
@@ -37,14 +100,14 @@ class Todo {
             if(item !== undefined)
                 str += item
         })
-        document.getElementById("list-item").innerHTML = str
+        document.getElementById("list-item").innerHTML = str;
+        this.getEleHtml();
     }
     //render list task to do
-    renderList = (tmp) => {
+    renderList = () => {
         let list = this.getList();
         let str = "";
         let test = [];
-     
         test = list.map((item, index) => {
             if (!item.isComplete) {
                 return `<li class="list-group-item" 
@@ -60,8 +123,9 @@ class Todo {
         test.forEach(item => {
             if(item !== undefined)
                 str += item
-        })
-        document.getElementById("list-item").innerHTML = str
+        })     
+        document.getElementById("list-item").innerHTML = str;
+        this.getEleHtml();
     }
 
 
@@ -73,8 +137,6 @@ class Todo {
                 item.isComplete = !item.isComplete
             }
         });
-       
-        
         this.setListValue(list);
         this.storeData(list);
         this.renderList();
@@ -94,6 +156,7 @@ class Todo {
                                                         <button class="float-right  btn btn-primary btn-cancel" 
                                                         idbutton="${item.id}">Cancel
                                                         </button>`
+        this.getEleHtml();
     }
 
     //cancel save button when edit
@@ -110,6 +173,7 @@ class Todo {
                                                     <button class="float-right fas fa-pencil-alt btn btn-warning btn-edit" 
                                                     idbutton="${item.id}">
                                                     </button>`
+        this.getEleHtml();
     }
 
     //button save when edit
@@ -131,6 +195,7 @@ class Todo {
                                                     <button class="float-right fas fa-pencil-alt btn btn-warning btn-edit" 
                                                     idbutton="${item.id}">
                                                     </button>`
+        this.getEleHtml();
     }
 
 
@@ -163,6 +228,8 @@ class Todo {
         });
         localStorage.setItem("items", JSON.stringify(list))
     }
+
+   
 }
 
 export default Todo;
