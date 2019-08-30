@@ -81,7 +81,7 @@ class Todo {
   renderCompleted () {
     let str = ''
     const list = this.getList()
-    const test = list.map((item, index) => {
+    const element = list.map((item, index) => {
       if (item.isComplete) {
         return `<li class="list-group-item" 
                         id="${item.id}">${item.value} 
@@ -90,7 +90,7 @@ class Todo {
                         </button></li>`
       }
     })
-    test.forEach(item => {
+    element.forEach(item => {
       if (item !== undefined) { str += item }
     })
     document.getElementById('list-item').innerHTML = str
@@ -101,7 +101,7 @@ class Todo {
   renderList () {
     const list = this.getList()
     let str = ''
-    const test = list.map((item, index) => {
+    const element = list.map((item, index) => {
       if (!item.isComplete) {
         return `<li class="list-group-item" 
                         id="${item.id}">${item.value} 
@@ -113,7 +113,7 @@ class Todo {
                         </button></li>`
       }
     })
-    test.forEach(item => {
+    element.forEach(item => {
       if (item !== undefined) { str += item }
     })
     document.getElementById('list-item').innerHTML = str
