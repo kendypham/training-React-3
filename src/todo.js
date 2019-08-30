@@ -22,9 +22,8 @@ class Todo {
     const undoLet = document.getElementsByClassName('btn-undo')
     const list = [edit, save, cancel, remove, undoLet]
     this.setEleValue(list)
-
+    const that = this
     for (const key of list[0]) {
-      const that = this
       key.addEventListener('click', function () {
         const id = (this.getAttribute('idbutton'))
         that.editItem(id)
@@ -32,7 +31,6 @@ class Todo {
     }
 
     for (const key of list[1]) {
-      const that = this
       key.addEventListener('click', function () {
         const id = (this.getAttribute('idbutton'))
         that.saveEdit(id)
@@ -40,7 +38,6 @@ class Todo {
     }
 
     for (const key of list[2]) {
-      const that = this
       key.addEventListener('click', function () {
         const id = (this.getAttribute('idbutton'))
         that.cancelSave(id)
@@ -48,7 +45,6 @@ class Todo {
     }
 
     for (const key of list[3]) {
-      const that = this
       key.addEventListener('click', function () {
         const id = (this.getAttribute('idbutton'))
         that.removeItem(id)
@@ -56,7 +52,6 @@ class Todo {
     }
 
     for (const key of list[4]) {
-      const that = this
       key.addEventListener('click', function () {
         const id = (this.getAttribute('idbutton'))
         that.undo(id)
